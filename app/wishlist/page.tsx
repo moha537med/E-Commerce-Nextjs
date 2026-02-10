@@ -47,7 +47,7 @@ export default function WishlistPage() {
 
               return (
                 <div
-                  key={item._id || item.id || Math.random().toString()} 
+                  key={item._id || Math.random().toString()} 
                   className="border p-4 rounded-lg shadow hover:shadow-lg transition flex flex-col items-center gap-3 bg-white"
                 >
                   <img
