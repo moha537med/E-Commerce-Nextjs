@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <nav className="bg-blue-600 text-white shadow-md">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
-        <Link href="/products" className="text-2xl font-bold hover:text-gray-200">
+        <Link href="/" className="text-2xl font-bold hover:text-gray-200">
           ShopMart
         </Link>
 

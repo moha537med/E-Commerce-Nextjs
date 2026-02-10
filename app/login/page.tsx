@@ -27,7 +27,7 @@ export default function LoginPage() {
         localStorage.setItem("token", token);
         setToken(token);
         console.log("LOGIN SUCCESS - Token:", token);
-        router.push("/products");
+        router.push("/");
       }else {
         setError("No token received from server");
       }
