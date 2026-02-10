@@ -1,4 +1,3 @@
-// src/components/ProductCard.tsx
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
