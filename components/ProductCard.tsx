@@ -1,4 +1,4 @@
-// src/components/ProductCard.tsx 
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -32,6 +32,10 @@ export default function ProductCard({ product }: ProductCardProps) {
   const isInCart = cartItems.some((item) => item.product?._id === product._id);
   const isInWishlist = wishlistItems.some((item) => item._id === product._id);
 
+  const goToDetails = () => {
+    router.push(`/products/${product._id}`);
+  };
+
   const handleAddToCart = async () => {
     if (!token) return router.push("/login");
     if (isInCart || isAddingCart) return;
@@ -60,14 +64,17 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <div className="border rounded-lg p-4 shadow hover:shadow-lg transition-shadow flex flex-col gap-3 relative">
-      <img
-        src={product.imageCover || "https://via.placeholder.com/300x300?text=Product"}
-        alt={product.title}
-        className="w-full h-52 object-cover rounded-md"
-      />
-      <h3 className="font-semibold text-lg line-clamp-2 min-h-12">
-        {product.title || "product"}
-      </h3>
+      <div onClick={goToDetails} className="cursor-pointer">
+        <img
+          src={product.imageCover || "https://via.placeholder.com/300x300?text=Product"}
+          alt={product.title}
+          className="w-full h-52 object-cover rounded-md"
+        />
+        <h3 className="font-semibold text-lg line-clamp-2 min-h-12 mt-2">
+          {product.title || "product"}
+        </h3>
+      </div>
+
       <p className="text-xl font-bold text-blue-700">
         ${product.price?.toFixed(2) || "0.00"}
       </p>
@@ -84,7 +91,11 @@ export default function ProductCard({ product }: ProductCardProps) {
               : "bg-blue-600 hover:bg-blue-700"
           }`}
         >
-          {isInCart ? "Already in cart" : isAddingCart ? "Adding in progress..." : "Add to cart"}
+          {isInCart
+            ? "Already in cart"
+            : isAddingCart
+            ? "Adding..."
+            : "Add to cart"}
         </button>
 
         <button
@@ -94,9 +105,8 @@ export default function ProductCard({ product }: ProductCardProps) {
               ? "bg-red-100 text-red-600 hover:bg-red-200"
               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
           }`}
-          title={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
         >
-          <span className={`w-6 h-6 ${isInWishlist ? "fill-red-600" : ""}`}>💘</span>
+          💘
         </button>
       </div>
 
